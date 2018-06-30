@@ -5,7 +5,7 @@
             //下拉数据
             data: [],
             //默认选中值
-            value: this.$el.val(),
+            value: '',
             //单选或复选（'radio' || 'checkbox'）
             type: 'radio',
             placeholder: '请选择',
@@ -25,13 +25,14 @@
             list.forEach(function (item) {
                 if (item.value == this.option.value) {
                     this.setSelect(item.label)
-                    html += '<li class=container-list__item current-select" value="' + item.value + '">' + item.label + '</li>'
+                    html += '<li class="container-list__item current-select" value="' + item.value + '">' + item.label + '</li>'
                 }
                 html += '<li class="container-list__item" value="' + item.value + '">' + item.label + '</li>'
             }.bind(this))
             html += '</ul></div>'
             this.$el.after(html);
             this.getElement();
+            this.defaultSelect = this.$els.select_el;
             this.eventRegister();
         },
         //获取dom元素
@@ -45,7 +46,9 @@
                 // 下拉列表元素
                 list_els:$(el[1]).children().children(),
                 // 检索框
-                search_el: $(el[1]).children('.container-search__input')
+                search_el: $(el[1]).children('.container-search__input'),
+                //当前选中元素
+                select_el: $('.current-select')
             }
         },
         //事件绑定
@@ -57,13 +60,40 @@
              this.$els.search_el.on('input', function (e) {
                  this.filter(e.target.value)
              }.bind(this))
-            this.$els.container_el.on('click', function (e) {
+            this.$els.list_els.on('click', function (e) {
                  this.option.callback.selected({
                      value: e.target.value,
                      name: e.target.innerText,
                  })
                  this.setSelect(e.target.innerText)
                  this.trigger(false)
+             }.bind(this))
+             this.$els.container_el.on('keydown', function(e) {
+                 var defaultSelect =$( this.defaultSelect);
+                 var next = defaultSelect.next();
+                 var prev = defaultSelect.prev();
+                 var keyCode = e.keyCode;
+                 //向下
+                 if(keyCode === 40 &&  next.length > 0 ) {
+                    defaultSelect.removeClass('current-select');
+                    this.defaultSelect =  next;
+                    next.addClass('current-select');
+                    return;
+                     //向上.
+                 } else if (keyCode === 38 && prev.length > 0) {
+                    defaultSelect.removeClass('current-select');
+                    this.defaultSelect =  prev;
+                    prev.addClass('current-select');
+                    return;
+                     //回车
+                 } else if (keyCode === 13) {
+                     var data = {
+                         value : this.defaultSelect[0].value,
+                         name : this.defaultSelect[0].innerText,
+                     }
+                     this.setSelect(data.name)
+                     this.option.callback.selected(data);
+                 }
              }.bind(this))
         },
         trigger(show) {
