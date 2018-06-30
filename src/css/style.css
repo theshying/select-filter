@@ -1,0 +1,85 @@
+.content{
+    width: 200px;
+}
+ul, li {
+    padding: 0;
+    margin: 0;
+}
+.block {
+    display: block;
+    width: 100%;
+}
+.container{
+    display: none;
+    border:  1px solid #ccc;
+
+}
+.container-list{
+    max-height: 150px;
+    overflow-y: scroll;
+}
+.container-list::-webkit-scrollbar{
+    width: 6px;  
+    height: 6px;  
+    background-color: #F5F5F5;  
+}
+
+
+  
+/*定义滚动条轨道 内阴影+圆角*/  
+.container-list::-webkit-scrollbar-track  
+{  
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  
+    border-radius: 10px;  
+    background-color: #FFF;  
+}  
+  
+/*定义滑块 内阴影+圆角*/  
+.container-list::-webkit-scrollbar-thumb  
+{  
+    border-radius: 10px;  
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
+    background-color: #AAA;  
+
+}
+
+.container-item{
+    list-style: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.container-item:hover{
+    background-color: coral;
+    color: white;
+}
+.select{
+  display: block;
+  height: 25px;
+  line-height: 25px;
+  padding: 3px 8px;
+  border:  1px solid #ccc;
+  position: relative;
+}
+.select::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 0;
+    height: 0;
+    top: 50%;
+    transform: translate(0,-50%);
+    margin-right: 5px;
+    border-width:10px 8px 0;
+    border-style:solid;
+     border-color:#ccc transparent transparent;/*灰 透明 透明 */
+}
+.select-input{
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    display: block;
+    padding: 3px 8px;
+}
+.current-select{
+    background-color: coral;
+}
