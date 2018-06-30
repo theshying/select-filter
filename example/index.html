@@ -17,11 +17,11 @@
 
 <body>
     <div class="content">
-        <input type="hidden" name='areaCode' value="2">
+        <span class="select" id="filter-select"></span>
     </div>
 </body>
 <script>
-    $('[name="areaCode"]').filterSelect({
+    $('#filter-select').filterSelect({
         data: [
             {value:1, label: '恤上与'},
             {value:2, label: '恤上与'},
@@ -43,6 +43,11 @@
             {value:1, label: '恤上与1'},
         ],
         radio: true,
+        callback: {
+            selected: function(data) {
+                console.log(data)
+            }
+        }
     })
 </script>
 </script>
