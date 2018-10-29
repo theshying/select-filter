@@ -16,33 +16,22 @@
 </head>
 
 <body>
-    <div class="content">
-        <span class="select" id="filter-select"></span>
+    <div class="content" style="width: 300px">
+        <input  class="select" id="filter-select"></input>
     </div>
 </body>
 <script>
     $('#filter-select').filterSelect({
         data: [
-            {value:1, label: '恤上与'},
-            {value:2, label: '恤上与'},
-            {value:3, label: '恤上4与'},
-            {value:4, label: '恤上与3'},
-            {value:5, label: '恤上与2'},
-            {value:1, label: '恤上与1'},
-            {value:1, label: '恤上与1'},
-            {value:1, label: '恤上与1'},
-            {value:1, label: '恤上与1'},
-            {value:1, label: '恤上与1'},
-            {value:1, label: '恤上与1'},
-            {value:1, label: '恤上与1'},
-            {value:1, label: '恤上与1'},
-            {value:1, label: '恤上与1'},
-            {value:1, label: '恤上与1'},
-            {value:1, label: '恤上与1'},
-            {value:1, label: '恤上与1'},
-            {value:1, label: '恤上与1'},
+            {value:1, label: '恤上1'},
+            {value:2, label: '恤上2'},
+            {value:3, label: '恤上3'},
+            {value:4, label: '恤上4'},
+            {value:5, label: '恤上5'},
+            {value:6, label: '恤上6'},
+         
         ],
-        value:2,
+        defaultValue:6,
         radio: true,
         callback: {
             selected: function(data) {
